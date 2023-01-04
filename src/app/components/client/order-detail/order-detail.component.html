@@ -1,0 +1,55 @@
+<div class="container">
+    
+<p-card header="Đơn hàng">
+    <p-table [value]="listOrder" [rows]="10" [paginator]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Tên khách hàng</th>
+                <th>Địa chỉ Email</th>
+                <th>Số điện thoại</th>
+                <th>Ghi chú</th>
+                <th>Tổng số tiền</th>
+                <th>Chi tiết đơn hàng</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-order >
+            <tr>
+                <td>
+                    {{order.firstname}} <span> </span> {{order.lastname}}
+                </td>
+                <td>
+                    {{order.email}}
+                </td>
+                <td>
+                    {{order.phone}}
+                </td>
+                <td>
+                    {{order.note}}
+                </td>
+                <td>
+                    {{order.totalPrice}}
+                </td>
+                <td class="text-center">
+                    <button pButton type="button" icon="pi pi-book" class="p-button-rounded p-button-primary" (click)="getListOrderDetail(order.id)"></button>
+                    <p-dialog header="Thông tin đơn hàng"[(visible)]="showOrder" [modal]="true" [transitionOptions]="'.3s'" >
+                        <p-table [value]="listOrderDetail">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Giá tiền</th>
+                                    <th>Tổng giá tiền</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-item>
+                                <td>{{item.name}} <span> x </span> {{item.qty}}</td>
+                                <td>{{item.price | currency}}</td>
+                                <td>{{item.subTotal | currency}}</td>
+                            </ng-template>
+                        </p-table>
+                    </p-dialog>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>
+</div>

@@ -1,0 +1,90 @@
+
+
+
+<div class="container">
+    <p-carousel [value]="cars" [numVisible]="1" [numScroll]="1" [autoplayInterval]="3000" [showNavigators]="false" >
+        <ng-template let-car pTemplate="item">
+            <div class="carousel">
+                <img src="{{car.url}}" alt="" width="100%"> 
+            </div>
+        </ng-template>
+    </p-carousel>
+</div>
+
+<div class="container">
+    <div class="grid">
+        <div class="col-6">
+            <img src="assets/home_three1.jpg" alt="" class="w-full">
+        </div>
+        <div class="col-6">
+            <img src="assets/home_three2.jpg" alt="" class="w-full">
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div>
+        <h2 class="title">
+            Chó Cảnh
+        </h2>
+    </div>
+
+    <div class="list-product grid">
+        <div class="col-3" *ngFor="let product of listProduct1">
+            <div class="product border-2 border-dashed ">
+                <div class="box-image">
+                    <a routerLink="product/{{product.id}}">
+                        <img src="{{'data:image/jpg;base64,' + product.images[0].data}}" alt="">
+                    </a>
+                    <div class="cart-button" (click)="addTocart(product)">
+                        <strong>+</strong>
+                    </div>
+                </div>
+                <div class="box-text text-center">
+                    <p class="product-title">{{product.category.name}}</p>
+                    <p class="product-name">
+                        <a routerLink="product/{{product.id}}">{{product.name}}</a>
+                    </p>
+                    <p class="product-price">
+                        {{product.price | currency}}
+                    </p>
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>
+
+<div class="container">
+    <div>
+        <h2 class="title">
+            Mèo Cảnh
+        </h2>
+    </div>
+
+    <div class="list-product grid">
+        <div class="col-3">
+            <div class="product border-2 border-dashed ">
+                <div class="box-image">
+                    <a href="">
+                        <img src="assets/product1.jpg" alt="">
+                    </a>
+                    <div class="cart-button">
+                        <strong>+</strong>
+                    </div>
+                </div>
+                <div class="box-text text-center">
+                    <p class="product-title">CHÓ CẢNH</p>
+                    <p class="product-name">
+                        <a href="">Chó Phú Quốc Thuần Chủng</a>
+                    </p>
+                    <p class="product-price">
+                        price | currency
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+

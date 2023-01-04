@@ -1,0 +1,33 @@
+
+
+.product-image{
+    position: relative;
+}
+
+.delete-image{
+    position: absolute;
+    top:0;
+    right: -6px;
+    padding: 1px;
+    width: auto !important;
+    height: auto !important;
+    z-index: 10;
+}
+
+.product-image img{
+    box-shadow: 0 1px 10px #0000001f,0 4px 5px #00000024,0 2px 4px -1px #0003!important;
+    height: 60px !important;
+    object-fit: contain;
+}
+
+:host ::ng-deep .p-inputnumber{
+    width: 100%;
+}
+
+.list-image img{
+    object-fit: contain;
+}
+
+.choosen{
+    border-color: #85b2f9;
+}

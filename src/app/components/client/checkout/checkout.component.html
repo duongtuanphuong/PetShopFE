@@ -1,0 +1,79 @@
+
+<p-toast></p-toast>
+
+<div class="container">
+    <div class="grid">
+        <div class="col-7 border-top-2 border-black-alpha-30">
+            <h3>Thông tin thanh toán</h3>
+            
+            <form action="">
+                <div class="grid">
+                    <div class="col-6">
+                        <label for="firstname"> Họ: </label>
+                        <input type="text" pInputText class="w-full" [(ngModel)]="orderForm.firstname" name="firstname">
+                    </div>
+                    <div class="col-6">
+                        <label for="lastname"> Tên: </label>
+                        <input type="text" pInputText class="w-full" [(ngModel)]="orderForm.lastname" name="lastname">
+                    </div>
+                </div>
+    
+                <div class="mt-2">
+                    <label for="country"> Email: </label>
+                    <input type="text" pInputText class="w-full" [(ngModel)]="orderForm.email" name="email">
+                </div>
+    
+                <div class="mt-2">
+                    <label for="address"> Địa chỉ: </label>
+                    <input type="text" pInputText class="w-full" [(ngModel)]="orderForm.address" name="address">
+                </div>
+    
+                <div class="mt-2">
+                    <label for="phone"> Số điện thoại: </label>
+                    <input type="text" pInputText class="w-full" [(ngModel)]="orderForm.phone" name="phone">
+                </div>
+    
+                <div class="mt-2">
+                    <label for="note"> Ghi chú: </label>
+                    <textarea pInputTextarea rows="3" class="w-full" [(ngModel)]="orderForm.note" name="note"></textarea>
+                </div>
+
+                <button pButton pRipple type="button" label="Đặt hàng" class="p-button-warning mt-4" (click)="createOrder()"></button>
+
+            </form>
+        </div>
+
+        <div class="col ml-4 border-2 border-blue-500">
+            <h3>Đơn hàng của bạn</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th class="text-right">Tổng cộng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of listItemInCart">
+                        <td class="text-left">{{item.name}} x <span>{{item.quantity}}</span></td>
+                        <td><b>{{item.price | currency}}</b></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Tổng cộng:</th>
+                        <td><b>{{totalPrice | currency}}</b></td>
+                    </tr>
+                    <tr>
+                        <th>Giao hàng:</th>
+                        <td>Giao hàng miễn phí</td>
+                    </tr>
+                    <tr>
+                        <th>Tổng cộng:</th>
+                        <td><b>{{totalPrice | currency}}</b></td>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+</div>

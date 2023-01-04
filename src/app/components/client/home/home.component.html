@@ -1,0 +1,135 @@
+
+<p-toast></p-toast>
+
+<header>
+    <div class="grid mx-auto justify-content-between align-items-center border-bottom-1 border-300">
+        <div class="logo cursor-pointer py-4" routerLink="/">
+            <img src="../../../../assets/logo.png" alt="">
+        </div>
+        <div class="list-menu">
+            <button routerLink="/" pButton type="button"  class="p-button-text p-button-secondary uppercase font-semibold mr-2 py-4">Trang chủ</button>
+            <button routerLink="category/{{category.id}}" pButton type="button"  class="p-button-text p-button-secondary uppercase font-semibold mr-2 py-4" *ngFor="let category of listCategoryEnabled">{{category.name}}</button>
+            <button routerLink="blog"pButton type="button"  class="p-button-text p-button-secondary uppercase font-semibold mr-2 py-4">Tin tức</button>
+            <button pButton type="button"  class="p-button-text p-button-secondary uppercase font-semibold mr-2 py-4">Liên hệ</button> 
+        </div>
+
+        <div class="menu-icon">
+            <button pButton type="button" icon="pi pi-search" class="p-button-rounded p-button-secondary p-button-text" (click)="op.toggle($event)"></button>
+            <p-overlayPanel #op>
+                <ng-template pTemplate>
+                    <span class="p-input-icon-right">
+                        <i class="pi pi-search"></i>
+                        <input type="text" pInputText placeholder="Search" />
+                    </span>
+                </ng-template>
+            </p-overlayPanel>
+            <button pButton type="button" icon="pi pi-user" class="p-button-rounded p-button-secondary p-button-text" (click)="showAuthModal();" *ngIf="!isLoggedIn"></button>
+            <button pButton type="button" icon="pi pi-user" class="p-button-rounded p-button-secondary p-button-text" (click)="profile.toggle($event)" *ngIf="isLoggedIn"></button>
+            <p-overlayPanel #profile>
+                <ul class="user-dropdown" >
+                    <li>
+                        <a class="flex align-items-center p-2 cursor-pointer" (click)="toProfile()">
+                            <span class="mr-2"><i class="pi pi-user"></i></span>
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex align-items-center p-2 cursor-pointer" (click)="toOrderDetail()">
+                            <span class="mr-2"><i class="pi pi-shopping-cart"></i></span>
+                            <span>Đơn hàng</span>
+                        </a>
+                    </li>
+                    <p-divider class="m-0"></p-divider>
+                    <li>
+                        <a class="flex align-items-center p-2 cursor-pointer mt-1"  (click)="logout()">
+                            <span class="mr-2"><i class="pi pi-exclamation-circle"></i></span>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                </ul>
+            </p-overlayPanel>
+            <p-button
+                *ngIf="listItemInCart != null"
+                icon="pi pi-shopping-cart"
+                badge="{{listItemInCart.length}}"
+                styleClass="p-button-secondary p-button-rounded p-button-text"
+                badgeClass="p-badge-danger"
+                (click)="cart.toggle($event)"
+            >
+            </p-button>
+            <p-overlayPanel #cart>
+                <ng-template pTemplate>
+                    <div class="listItemInCart">
+                        <ul>
+                            <li *ngFor="let product of listItemInCart" class="cart-box">
+                                <div class="cart-box-image p-2">
+                                    <a href="" class="block"><img src="{{'data:image/jpg;base64,' + product.images[0].data}}" alt="" width="80px"></a>
+                                </div>
+                                <div class="cart-box-text">
+                                    <a href="">{{product.name}}</a>
+                                    <div><span>{{product.quantity}} x </span>{{product.price | currency}}</div>
+                                </div>
+                                <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text" (click)="removeFormCart(product)"></button>
+                            </li>
+                        </ul>
+                        <p-divider></p-divider>
+                        <div class="text-center">
+                            <strong>Tổng: </strong><span class="ml-2">{{totalPrice | currency}}</span>
+                        </div>
+                        <p-divider></p-divider>
+                        <div class="cart-button">
+                            <button pButton pRipple label="XEM GIỎ HÀNG" class="w-full" routerLink="cart"></button>
+                            <button pButton pRipple label="THANH TOÁN" class="w-full p-button-warning mt-2" routerLink="checkout"></button>
+                        </div>   
+                    </div>
+                </ng-template>
+            </p-overlayPanel>
+        </div>
+    </div>
+</header>
+
+<p-dialog [(visible)]="authModal" [style]="{width: '30vw'}"  [baseZIndex]="10000" [modal]="true">
+    <p-tabView>
+        <p-tabPanel header="Đăng nhập">
+            <div class="p-field">
+                <label for="username">Tên đăng nhập: </label>
+                <input type="text" pInputText class="w-full" [(ngModel)]="loginForm.username" name="username">
+              </div>
+              <div class="p-field">
+                <label for="password">Mật khẩu: </label>
+                <input type="password" pPassword [feedback]="false" class="w-full" [(ngModel)]="loginForm.password" name="password">
+              </div>
+              <div class="p-field mt-3">
+                <button type="submit" pButton (click)="login()">Đăng nhập</button>
+              </div>
+        </p-tabPanel>
+        <p-tabPanel header="Đăng ký">
+            <form action="">
+                <div class="p-field">
+                    <label for="username">Tên đăng nhập: </label>
+                    <input type="text" pInputText class="w-full" [(ngModel)]="registerForm.username" name="username">
+                </div>
+                <div class="p-field">
+                    <label for="email">Email: </label>
+                    <input type="email" pInputText class="w-full" [(ngModel)]="registerForm.email" name="email">
+                </div>
+                <div class="p-field">
+                    <label for="password">Mật khẩu: </label>
+                    <input type="password" pPassword [feedback]="false" class="w-full" [(ngModel)]="registerForm.password" name="password">
+                </div>
+                <div class="p-field mt-3">
+                    <button type="submit" pButton (click)="register()">Đăng ký</button>
+                </div>
+              </form>
+        </p-tabPanel>
+    </p-tabView>
+</p-dialog>
+
+
+<p-overlayPanel>
+    
+</p-overlayPanel>
+
+<router-outlet></router-outlet>
+
+

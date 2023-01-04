@@ -1,0 +1,98 @@
+
+<p-toast></p-toast>
+
+<div class="main-container">
+    <div class="layout-sidebar">
+        <div class="sidebar-logo">
+            <a routerLink="/admin" class="sidebar-link">
+                <img src="assets/logo_admin.png" alt="">
+                <h5>PetShop</h5>
+            </a>
+        </div>
+        <ul class="sidebar-menu pt-5">
+            <li><a routerLink="/admin" class="nav-item">
+                <span><i class="pi pi-home text-blue-400"></i></span>
+                <span class="title">Dashboard</span>
+            </a></li>
+            <li><a routerLink="category" class="nav-item">
+                <span><i class="pi pi-file-edit text-500"></i></span>
+                <span class="title">Category</span>
+            </a></li>
+            <li><a routerLink="product" class="nav-item">
+                <span><i class="pi pi-inbox text-cyan-500"></i></span>
+                <span class="title">Product</span>
+            </a></li>
+            <li><a routerLink="blog"class="nav-item">
+                <span><i class="pi pi-mobile text-orange-500"></i></span>
+                <span class="title">Blog</span>
+            </a></li>
+            <li><a routerLink="order" class="nav-item">
+                <span><i class="pi pi-shopping-bag text-purple-500"></i></span>
+                <span class="title">Order</span>
+            </a></li>
+            <li><a routerLink="account" class="nav-item">
+                <span><i class="pi pi-user text-blue-700"></i></span>
+                <span class="title">Account</span>
+            </a></li>
+            <li><a routerLink="contact" class="nav-item">
+                <span><i class="pi pi-send text-red-400"></i></span>
+                <span class="title">Contact</span>
+            </a></li>
+        </ul>
+    </div>
+    <div class="page-container">
+        <div class="header-container flex align-items-center justify-content-between">
+            <div class="nav-left">
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input type="text" pInputText placeholder="Search" />
+                </span>
+            </div>
+            <ul class="nav-right flex align-items-center ">
+                <li>
+                    <i class="pi pi-bell mr-4 p-text-secondary" pBadge style="font-size: 1.5rem" value="2"></i>
+                </li>
+                <li>
+                    <i class="pi pi-envelope mr-4 p-text-secondary" pBadge style="font-size: 1.5rem" value="10" severity="danger"></i>
+                </li>
+                <li class="flex align-items-center cursor-pointer mr-3" (click)="account.toggle($event)">
+                    <p-avatar image="assets/logo.png" styleClass="mr-2" size="circle" shape="circle"></p-avatar>
+                    <span>ADMIN</span>
+
+                    <p-overlayPanel #account>
+                        <ng-template pTemplate>
+                            <ul class="user-dropdown">
+                                <li>
+                                    <a class="flex align-items-center p-2" routerLink="contact">
+                                        <span class="mr-2"><i class="pi pi-send"></i></span>
+                                        <span>Message</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="flex align-items-center p-2" routerLink="profile">
+                                        <span class="mr-2"><i class="pi pi-user"></i></span>
+                                        <span>Profile</span>
+                                    </a>
+                                </li>
+                                <p-divider class="m-0"></p-divider>
+                                <li>
+                                    <a class="flex align-items-center p-2 cursor-pointer mt-1"  (click)="logout()">
+                                        <span class="mr-2"><i class="pi pi-exclamation-circle"></i></span>
+                                        <span>Logout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </ng-template>
+                    </p-overlayPanel>
+                    
+
+                </li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="content">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

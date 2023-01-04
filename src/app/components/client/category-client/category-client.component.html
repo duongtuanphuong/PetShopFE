@@ -1,0 +1,57 @@
+
+
+<div class="container">
+    <nav class="p-3 my-2">
+        <a routerLink="/" class="text-color-secondary uppercase">Trang chủ</a>
+        <span class="p-1">/</span>  
+        <a class="text-color uppercase font-bold"></a>
+    </nav>
+
+    <div class="grid">
+        <div class="product-sidebar col-3">
+            <div class="newest-product">
+                <h4>Sản phẩm</h4>
+                <div class="divider"></div>
+                <div class="newest-product border-1 p-3 surface-border">
+                    <div *ngFor="let product of listNewestProduct" class="flex align-items-center p-2 mb-2 border-bottom-1 surface-border ">
+                        <div class="newest-image cursor-pointer " (click)="seeProductDetail(product.id)">
+                            <img src="{{'data:image/jpg;base64,' + product.images[0].data}}" alt="">
+                        </div>
+                        <div class="newest-text ml-3 cursor-pointer" (click)="seeProductDetail(product.id)">
+                            <div>{{product.name}}</div>
+                            <strong>{{product.price | currency}}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p-divider layout="vertical"></p-divider>
+        <div class="list-product col">
+            <p-dataView [value]="listProduct" [paginator]="true" [rows]="8" >
+
+                <ng-template let-product pTemplate="listItem">
+                    <div class="product border-2 border-dashed col-4">
+                        <div class="box-image">
+                            <a (click)="seeProductDetail(product.id)" class="cursor-pointer">
+                                <img src="{{'data:image/jpg;base64,' + product.images[0].data}}" alt="">
+                            </a>
+                            <div class="cart-button" (click)="addTocart(product)">
+                                <strong>+</strong>
+                            </div>
+                        </div>
+                        <div class="box-text text-center">
+                            <p class="product-title">{{product.category.name}}</p>
+                            <p class="product-name">
+                                <a (click)="seeProductDetail(product.id)" class="cursor-pointer">{{product.name}}</a>
+                            </p>
+                            <p class="product-price">
+                                {{product.price | currency}}
+                            </p>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataView>
+        </div>
+    </div>
+
+</div>

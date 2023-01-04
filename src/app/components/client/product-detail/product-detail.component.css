@@ -1,0 +1,145 @@
+.container{
+    max-width: 1200px;
+    margin: 15px auto;
+    
+}
+
+
+.divider{
+    height: 3px;
+    display: block;
+    background-color: rgba(0,0,0,0.1);
+    margin: 1em 0 1em;
+    width: 100%;
+    max-width: 30px;
+}
+
+.main-image{
+    width: 400px;
+    height: 400px;
+    padding: 10px;
+}
+
+.main-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.sub-image{
+    width: 90px;
+    height: 90px;
+    margin-right: 10px;
+}
+
+.sub-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.product{
+    padding: 5px;
+    border: 2px dashed transparent;
+    transition: border .2s;
+}
+
+.product:hover{
+    border: 2px dashed #E0E0E0;
+}
+
+.box-image{
+    position: relative;
+    overflow: hidden;
+}
+
+.cart-button{
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.box-image:hover .cart-button{
+    opacity: 1;
+}
+
+
+.box-image img{
+    width: 100%;
+    height: 175px;
+    object-fit: cover;
+    transition: transform .5s ;
+}
+.box-image:hover img{
+    transform: scale(1.1)
+}
+.cart-button strong{
+    border-radius: 0;
+    font-weight: bold;
+    margin: .3em 0;
+    border: 2px solid;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    width: 2.2em;
+    height: 2.2em;
+    font-size: 1em;
+    line-height: 1.9em;
+    font-family: Helvetica,Arial, Sans-serif;
+    border-color: #0093dd;
+    color: #0093dd;
+    transition: background-color .1s ease-out;
+    z-index: 10;
+}
+
+.cart-button strong::after{
+    transition: height .1s ease-out;
+    bottom: 100%;
+    margin-bottom: 0;
+    margin-left: -9px;
+    height: 8px;
+    width: 14px;
+    left: 50%;
+    content: ' ';
+    position: absolute;
+    pointer-events: none;
+    border: 2px solid #0093dd;
+    border-top-left-radius: 99px;
+    border-top-right-radius: 99px;
+    border-bottom: 0;
+}
+
+.cart-button:hover strong::after{
+    height: 12px;
+}
+
+.cart-button:hover strong{
+    background-color: #0093dd;
+    color: #fff;
+}
+
+.product-name a{
+    white-space: nowrap;
+    color: #111;
+    font-weight: bold;
+    transition: color .3s;
+}
+
+.product-name:hover a{
+    color: #fb6017;
+}
+
+
+.newest-image{
+    width: 50px;
+    height: 50px;
+}
+.newest-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

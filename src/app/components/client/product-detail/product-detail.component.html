@@ -1,0 +1,146 @@
+
+
+
+<div class="container grid py-4">
+    <div class="product-sidebar col-3">
+        <div class="newest-product">
+            <h4>Sản phẩm</h4>
+            <div class="divider"></div>
+            <div class="newest-product border-1 p-3 surface-border">
+                <div *ngFor="let product of listNewestProduct" class="flex align-items-center p-2 mb-2 border-bottom-1 surface-border ">
+                    <div class="newest-image cursor-pointer " (click)="changeProduct(product.id)">
+                        <img src="{{'data:image/jpg;base64,' + product.images[0].data}}" alt="">
+                    </div>
+                    <div class="newest-text ml-3 cursor-pointer" (click)="changeProduct(product.id)">
+                        <div>{{product.name}}</div>
+                        <strong>{{product.price | currency}}</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="newest-blog">
+            <h4>Bài viết mới nhất</h4>
+            <div class="divider"></div>
+        </div>
+    </div>
+    <div class="product-detail col-9 " *ngIf="product != null">
+        <div class="product-info flex">
+            <div class="product-image px-3">
+                <div class="main-image border-1 surface-border">
+                    <img #image src="{{'data:image/jpg;base64,' + product.images[0].data}}" alt="">
+                </div>
+                <div class="flex mt-3">
+                    <div class="sub-image border-1 surface-border cursor-pointer" *ngFor="let image of product.images" (click)="changeImage($event)">
+                        <img src="{{'data:image/jpg;base64,' + image.data}}" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="product-name flex-shrink-1 px-3">
+                <nav>
+                    <a routerLink="/" class="text-color-secondary uppercase">Trang chủ</a>
+                    <span class="p-1">/</span>  
+                    <a href="" class="text-color-secondary uppercase">{{product.category.name}}</a>
+                </nav>
+                <h3>{{product.name}}</h3>
+                <div class="divider"></div>
+                <p class="text-lg font-semibold">{{product.price | currency}}</p>
+                <p class="text-lg">
+                    <span class="uppercase text-color font-bold">{{product.name}} :</span>
+                    {{product.description}}
+                </p>
+                <button pButton label="Thêm vào giỏ hàng" class="p-button-warning" (click)="addTocart(product)"></button>
+            </div>
+        </div>
+
+        <p-tabView class="px-3">
+            <p-tabPanel header="Mô tả">
+                <div class="border-1 surface-border p-3 w-full" >
+                    {{product.content}}
+                </div>
+
+            </p-tabPanel>
+            <p-tabPanel header="Đánh giá">
+                <div class="border-1 surface-border p-3 w-full">
+                    <h3>Đánh giá</h3>
+                    <p>Chưa có đánh giá nào</p>
+                    <div class="p-3 border-2 border-primary">
+                        <h3>Hãy là người đầu tiên nhận xét <span>{{product.name}}</span></h3>
+                        <div class="p-field">
+                            <label for="">Nhận xét của bạn: </label>
+                            <textarea pInputTextarea class="w-full mt-2" rows="5"></textarea>
+                            
+                        </div>
+                        <div class="p-field mt-3">
+                            <div class="grid">
+                                <div class="col-6">
+                                    <label for="">Tên:</label>
+                                    <input pInputText type="text" name="" id="" class="w-full">
+                                </div>
+                                <div class="col-6">
+                                    <label for="">Email:</label>
+                                    <input pInputText type="text" name="" id="" class="w-full">
+                                </div>
+                            </div>
+                        </div>
+                        <button pButton label="Gửi đi"> </button>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Chính sách bảo hànhh">
+                <div class="border-1 surface-border p-3 w-full">
+                    Chính sách bảo hành của riêng mỗi hãng:
+                    
+                    <p>CASIO: Bảo hành chính hãng máy 1 năm, pin 1,5 năm</p>
+
+                    <p>CITIZEN: Bảo hành chính hãng toàn cầu máy 1 năm, pin 1 năm</p>
+
+                    <p>SEIKO: Bảo hành chính hãng toàn cầu máy 1 năm, pin 1 năm</p>
+
+                    <p>ORIENT: Bảo hành chính hãng toàn cầu máy 1 năm, pin 1 năm</p>
+
+                    <p>OP: Bảo hành chính hãng máy 2 năm, pin 1 năm</p>
+
+                    <p>RHYTHM: Bảo hành chính hãng máy 1 năm, pin 1 năm</p>
+
+                    <p>OGIVAL: Bảo hành chính hãng máy 2 năm, pin 1 năm</p>
+
+                    <p>ELLE: Bảo hành chính hãng máy 2 năm, pin 2 năm</p>
+
+                    <p>TISSOT: Bảo hành chính hãng máy 2 năm, pin 1 năm</p>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+        <p-divider></p-divider>
+        <div class="related-product">
+            <h3>Sản phẩm tương tự</h3>
+            
+            <p-carousel [value]="listProductCategory" [numVisible]="4" [numScroll]="1" [showIndicators]="false">
+                <ng-template let-product pTemplate="item">
+                    <div class="product border-2 border-dashed mr-2">
+                        <div class="box-image">
+                            <a (click)="changeProduct(product.id)">
+                                <img src="{{'data:image/jpg;base64,' + product.images[0].data}}" alt="">
+                            </a>
+                            <div class="cart-button" (click)="addTocart(product)">
+                                <strong>+</strong>
+                            </div>
+                        </div>
+                        <div class="box-text text-center">
+                            <p class="product-title">{{product.category.name}}</p>
+                            <p class="product-name">
+                                <a (click)="changeProduct(product.id)" >{{product.name}}</a>
+                            </p>
+                            <p class="product-price">
+                                {{product.price | currency}}
+                            </p>
+                        </div>
+                    </div>                
+                </ng-template>
+            </p-carousel>
+        </div>
+    </div>
+
+    
+
+</div>
+

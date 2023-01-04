@@ -1,0 +1,45 @@
+<p-toast></p-toast>
+
+
+<p-card header="Blog">
+    <button pButton type="button" class="mb-5" (click)="showForm()" >Tạo bài viết mới</button>
+
+    <p-dialog header="Tạo bài viết mới" [(visible)]="displayForm" [modal]="true" [transitionOptions]="'.3s'" position="top" [style]="{width: '30vw'}">
+        <div class="p-field">
+            <label for="title">Tiêu đề: </label>
+            <input type="text" pInputText class="w-full mt-2"  name="title" [(ngModel)]="postForm.title">
+        </div>
+        <div class="p-field mt-1">
+            <label for="description">Mô tả: </label>
+            <textarea pInputTextarea class="w-full mt-1" rows="2"  name="description" [(ngModel)]="postForm.description"></textarea>
+        </div>
+        <div class="p-field mt-1">
+            <label for="content">Nội dung: </label>
+            <textarea pInputTextarea class="w-full mt-1" rows="3" name="content" [(ngModel)]="postForm.content"></textarea>
+        </div>
+
+        <button (click)="file.click()" pButton type="button" class="p-button-success mt-1">Ảnh minh họa</button>
+        <input type="file" #file hidden (change)="chooseImage($event)">
+
+        <div class="p-field mt-3">
+            <button type="submit" pButton (click)="savePost()" >Tạo mới</button>
+            <button pButton type="button" class="p-button-danger ml-3" (click)="displayForm=false">Hủy</button>
+        </div>
+    </p-dialog>
+
+    <div class="list-blog ml-4">
+        <div class="blog w-full flex align-items-center" *ngFor="let post of listPost">
+            <img src="{{'data:image/jpg;base64,' + post.thumbnail}}" alt="">
+            <div class="content flex-1 ml-2">
+                <h2>{{post.title}}</h2>
+                <div>
+                    {{post.description}}
+                </div>
+            </div>
+            <div class="button flex">
+                <button pButton type="button" icon="pi pi-pencil" class="p-button-rounded p-button-primary"></button>
+                <button pButton type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger"></button>
+            </div>
+        </div>
+    </div>
+</p-card>

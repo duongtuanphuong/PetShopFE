@@ -1,0 +1,22 @@
+
+
+<div class="container">
+
+    <h2 class="text-center">
+        Tin tức mới nhất
+    </h2>
+
+    <div class="grid">
+        <div class="col-9 grid">
+            <div class="blog col-4" *ngFor="let blog of listBlog">
+                <div class="blog-image">
+                    <img src="{{'data:image/jpg;base64,' + blog.thumbnail}}" alt="">
+                </div>
+                <div class="blog-content">
+                    <h3>{{blog.title}}</h3>
+                    {{blog.description}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+
+.container{
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+
+table{
+    width: 100%;
+}
+
+table th{
+    text-align: left;
+    padding: 1rem 1rem;
+}
+table td{
+    text-align: right;
+    padding: 1rem 1rem;
+}
+
+table th,table td{
+    border: 1px solid #dee2e6;
+    border-width: 0 0 1px 0;
+}
+
+thead th{
+    border-bottom: 3px solid #ececec;
+}
+
+tfoot tr:last-child td,tfoot tr:last-child th{
+    border-bottom: 3px solid #ececec;
+}

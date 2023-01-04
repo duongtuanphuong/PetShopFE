@@ -1,0 +1,96 @@
+
+.layout-sidebar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background-color: #fff;
+    width: 250px;
+    -webkit-user-select: none;
+    user-select: none;
+    transition: transform .4s cubic-bezier(.05,.74,.2,.99);
+    display: flex;
+    flex-direction: column;
+}
+
+.layout-sidebar .sidebar-logo{
+    border-bottom: 1px solid rgba(0, 0, 0, 0.0625);
+    border-right: 1px solid rgba(0, 0, 0, 0.0625);
+    padding: 0 20px;
+}
+
+.sidebar-link{
+    display: flex;
+    align-items: center;
+    color: #313435;
+}
+
+.sidebar-menu{
+    border-right: 1px solid rgba(0, 0, 0, 0.0625);
+    height: calc(100vh - 65px);
+    list-style: none;
+    margin: 0;
+    overflow: auto;
+    padding: 0;
+}
+.sidebar-menu li a{
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 5px 15px;
+    position: relative;
+    white-space: nowrap;
+    color: #72777a;
+    transition: all 0.3s ease;
+    font-family: Roboto, -apple-system, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+.sidebar-menu li:hover a{
+    color: #609af8;
+}
+.nav-item i{
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 17px;
+    height: 35px;
+    left: 0;
+    line-height: 35px;
+    margin-right: 14px;
+    position: relative;
+    text-align: center;
+    width: 35px;
+}
+
+.page-container{
+    min-height: 100vh;
+    padding-left: 250px;
+}
+
+.header-container{
+    height: 65px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.0625);
+    padding-left: 30px;
+}
+.nav-right li{
+    margin-right: 0.5rem;
+}
+
+.main-content{
+    padding:20px;
+    min-height: calc(100vh - 61px);
+    background-color: #f9fafb !important;
+}
+
+.user-dropdown a{
+    color: #72777a !important;
+    transition: all 0.3 ease-in-out;
+}
+
+
+.user-dropdown a:hover{
+    background-color: #f3f3f3;
+}
+
+.content{
+    padding: 15px;
+}
