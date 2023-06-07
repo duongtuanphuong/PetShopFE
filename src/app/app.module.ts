@@ -46,6 +46,7 @@ import {DataViewModule} from 'primeng/dataview';
 import { BlogClientComponent } from './components/client/blog-client/blog-client.component';
 import { UserDetailComponent } from './components/client/user-detail/user-detail.component';
 import { OrderDetailComponent } from './components/client/order-detail/order-detail.component';
+import { AdminGuardService } from './_service/admin-guard.service';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,7 @@ import { OrderDetailComponent } from './components/client/order-detail/order-det
     AnimateModule,
     DataViewModule
   ],
-  providers: [],
+  providers: [AdminGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

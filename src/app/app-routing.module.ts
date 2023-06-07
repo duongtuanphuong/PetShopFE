@@ -18,6 +18,7 @@ import { OrderDetailComponent } from './components/client/order-detail/order-det
 import { ProductDetailComponent } from './components/client/product-detail/product-detail.component';
 import { SuccessComponent } from './components/client/success/success.component';
 import { UserDetailComponent } from './components/client/user-detail/user-detail.component';
+import { AdminGuardService } from './_service/admin-guard.service';
 
 const routes: Routes = [
   {
@@ -34,7 +35,7 @@ const routes: Routes = [
       {path:'order-detail/:id',component:OrderDetailComponent}
     ]
   },
-  {path:'admin',component: DashboardComponent,
+  {path:'admin',component: DashboardComponent,canActivate:[AdminGuardService],
     children:[
       {path:'category',component:CategoryComponent},
       {path: 'product',component: ProductComponent},

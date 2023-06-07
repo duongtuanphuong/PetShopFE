@@ -34,7 +34,6 @@
 .cart-box{
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin-bottom: 0.25rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid #dee2e6;

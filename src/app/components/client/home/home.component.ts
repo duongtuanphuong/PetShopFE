@@ -87,8 +87,8 @@ export class HomeComponent implements OnInit {
       next: res =>{
         this.isSuccessful = true;
         this.isSignUpFailed = false;
-        this.showSuccess("Đăng ký thành công")
         this.authModal = false;
+        this.showSuccess("Đăng ký thành công")
       },error: err =>{
         this.showError(err.message);
         this.errorMessage = err.error.message;
